@@ -122,3 +122,105 @@ class Solution {
         return res + 1;
     }
 }
+
+Here's a `README.md` file based on the provided information:
+
+```markdown
+# Problem: Find the Winner of the Circular Game
+
+## Problem Description
+You are given two integers `n` (the number of people standing in a circle) and `k` (the count to determine who will be eliminated in each round). The game starts at the first player, and every `k`-th player from the current one will be eliminated in a circle. The goal is to determine the index of the last remaining player, i.e., the winner of the game.
+
+### Input:
+- Integer `n`: Number of people in the circle.
+- Integer `k`: The count to determine who will be eliminated next.
+
+### Output:
+- The index (1-indexed) of the player who will win the game.
+
+## Approaches
+
+### 1️⃣ Approach 1: Simulation
+In this approach, we simulate the elimination process using an array to represent the circle. We start at the first player, and using the formula `(cur_ind + k - 1) % n`, we determine the index of the next player to be eliminated. This process is repeated until only one player remains.
+
+**Time Complexity:** `O(n^2)`  
+**Space Complexity:** `O(n)`  
+
+**Code:**
+```java
+class Solution {
+    public int findTheWinner(int n, int k) {
+        ArrayList<Integer> circle = new ArrayList<>();
+        for (int i = 1; i <= n; ++i) {
+            circle.add(i);
+        }
+        int cur_ind = 0;
+
+        while (circle.size() > 1) {
+            int next_to_remove = (cur_ind + k - 1) % circle.size();
+            circle.remove(next_to_remove);
+            cur_ind = next_to_remove;
+        }
+
+        return circle.get(0);
+    }
+}
+```
+
+### 2️⃣ Approach 2: Recursion with Subproblems
+This approach leverages recursion by solving smaller subproblems. The base case occurs when there is only one person left, and the recursive case uses the formula `(recursion(n - 1, k) + k) % n` to calculate the winner in a smaller circle. The result is adjusted to a 1-based index.
+
+**Time Complexity:** `O(n)`  
+**Space Complexity:** `O(n)`  
+
+**Code:**
+```java
+class Solution {
+    public int findTheWinner(int n, int k) {
+        return recursion(n, k) + 1;
+    }
+
+    private int recursion(int n, int k) {
+        if (n == 1) {
+            return 0;
+        }
+        return (recursion(n - 1, k) + k) % n;
+    }
+}
+```
+
+### 3️⃣ Approach 3: Bottom-up DP with Constant Space
+This approach iteratively calculates the winner using a bottom-up dynamic programming approach. Starting with two players, it calculates the winner for each incremented number of players, ultimately arriving at the solution for `n` players. The result is returned as a 1-based index.
+
+**Time Complexity:** `O(n)`  
+**Space Complexity:** `O(1)`  
+
+**Code:**
+```java
+class Solution {
+    public int findTheWinner(int n, int k) {
+        int res = 0;
+        for (int player_num = 2; player_num <= n; ++player_num) {
+            res = (res + k) % player_num;
+        }
+        return res + 1;
+    }
+}
+```
+
+## Example
+For `n = 5` and `k = 2`, the expected output is:
+```
+3
+```
+
+## Conclusion
+The problem can be solved using multiple approaches:
+1. **Simulation**: Simulate the elimination process using an array.
+2. **Recursion**: Use a recursive approach that solves subproblems iteratively.
+3. **Bottom-up DP**: Solve iteratively with constant space.
+
+Choose the approach that fits your needs in terms of efficiency and space complexity.
+```
+
+You can use this markdown for your project or GitHub repository!
