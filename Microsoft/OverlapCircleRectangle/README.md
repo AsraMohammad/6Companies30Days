@@ -48,6 +48,13 @@ The code implements the above logic in a concise manner:
 - It calculates the squared distance between the circle's center and the nearest point.
 - Finally, it checks whether the distance is within the circle's radius.
 
+## Space and Time Complexity
+### Time Complexity
+The solution runs in **O(1)** because all operations (finding nearest coordinates and calculating distances) are constant time operations.
+
+### Space Complexity
+The solution uses **O(1)** additional space as it only requires a few variables to store intermediate calculations.
+
 ## Example Usage
 ```java
 class Solution {
@@ -60,3 +67,4 @@ class Solution {
         return distX * distX + distY * distY <= radius * radius;
     }
 }
+```
