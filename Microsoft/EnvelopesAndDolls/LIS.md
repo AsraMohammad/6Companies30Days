@@ -118,3 +118,70 @@ Given array: `[10, 22, 9, 33, 21, 50, 41, 60]`
 ```
 Length of LIS is 5
 ```
+
+
+
+
+Great question! Let me break it down for you.
+
+### What does `lis[i] < lis[j] + 1` mean?
+This condition is used to check if the **current LIS ending at index `i`** (`lis[i]`) can be updated by extending the **LIS ending at index `j`** (`lis[j]`).
+
+Here’s the logic step-by-step:
+
+1. **What is `lis[j]`?**
+   - `lis[j]` represents the length of the **longest increasing subsequence ending at index `j`**.
+
+2. **What does `lis[j] + 1` mean?**
+   - If `arr[i] > arr[j]`, then the current element `arr[i]` can extend the subsequence ending at `arr[j]`. 
+   - By doing this, the LIS length ending at `i` will become `lis[j] + 1`.
+
+3. **Why check `lis[i] < lis[j] + 1`?**
+   - `lis[i]` represents the current LIS length ending at index `i`.
+   - We only want to update `lis[i]` if extending the subsequence ending at `j` gives a **longer subsequence**. If `lis[i]` is already greater than or equal to `lis[j] + 1`, there's no point in updating it.
+
+---
+
+### Example Walkthrough
+
+Let’s take a small array:  
+`arr = [10, 22, 9, 33]`  
+
+**Step-by-Step Analysis:**
+
+1. **Initialization:**  
+   `lis[] = [1, 1, 1, 1]` (Each element can be its own subsequence of length 1).
+
+2. **Processing `i = 1` (`arr[1] = 22`):**  
+   - Compare with `j = 0` (`arr[0] = 10`):  
+     - `arr[1] > arr[0]` (22 > 10), so we check:  
+       - `lis[1] < lis[0] + 1` → `1 < 1 + 1` → **True**  
+       - Update `lis[1] = lis[0] + 1 = 2`.  
+   - `lis[] = [1, 2, 1, 1]`.
+
+3. **Processing `i = 2` (`arr[2] = 9`):**  
+   - Compare with `j = 0` (`arr[0] = 10`) and `j = 1` (`arr[1] = 22`):  
+     - `arr[2] < arr[0]` and `arr[2] < arr[1]`, so no update.  
+   - `lis[] = [1, 2, 1, 1]`.
+
+4. **Processing `i = 3` (`arr[3] = 33`):**  
+   - Compare with `j = 0` (`arr[0] = 10`):  
+     - `arr[3] > arr[0]` (33 > 10), so we check:  
+       - `lis[3] < lis[0] + 1` → `1 < 1 + 1` → **True**  
+       - Update `lis[3] = lis[0] + 1 = 2`.  
+   - Compare with `j = 1` (`arr[1] = 22`):  
+     - `arr[3] > arr[1]` (33 > 22), so we check:  
+       - `lis[3] < lis[1] + 1` → `2 < 2 + 1` → **True**  
+       - Update `lis[3] = lis[1] + 1 = 3`.  
+   - Compare with `j = 2` (`arr[2] = 9`):  
+     - `arr[3] > arr[2]` (33 > 9), but `lis[3]` is already 3, so no update.  
+   - `lis[] = [1, 2, 1, 3]`.
+
+---
+
+### Key Takeaways
+
+- `lis[i] < lis[j] + 1` ensures that we only update `lis[i]` if extending the subsequence ending at `j` provides a **longer subsequence** than what we already have at `i`.
+- This is how we progressively build the LIS for each element while comparing it with all previous elements.
+
+Let me know if this clears it up or if you’d like further clarification! 😊
