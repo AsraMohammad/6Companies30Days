@@ -1,4 +1,4 @@
- Here is the Java version of the provided C++ code. I'll explain the logic and provide a **dry run** in a clear and simple way.
+  
 
 ---
 
