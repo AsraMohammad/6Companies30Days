@@ -8,7 +8,7 @@ Solving DSA questions from top tech companies (Amazon, Microsoft, Google, etc.) 
 ## Progress Tracker
 | Day Range | Company       | Total Questions | Solved | Status      |
 |-----------|---------------|-----------------|--------|-------------|
-| 1-5       | Microsoft     | 15              | 1/15   | 🔄 In Progress |
+| 1-5       | Microsoft     | 15              | 5/15   | 🔄 In Progress |
 | 6-10      | Amazon        | 15              | 0/15   | ⬜ Pending      |
 | ...       | ...           | ...             | ...    | ...          |
 
