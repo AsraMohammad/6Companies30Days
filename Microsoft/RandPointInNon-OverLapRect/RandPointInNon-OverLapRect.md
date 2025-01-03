@@ -79,6 +79,9 @@ Randomly selected point: `(5, 6)`.
 
 This process ensures all points in all rectangles are chosen with equal probability.
 
+  
+
+```java
 import java.util.*;
 
 class Solution {
@@ -130,4 +133,29 @@ class Solution {
         return new int[]{x1 + x, y1 + y};
     }
 }
+```
 
+---
+
+### **Key Features**
+1. **Constructor (`Solution`)**:
+   - Precomputes the total number of points and a cumulative sum of points across rectangles.
+   - This preprocessing step allows efficient rectangle selection during the `pick` method.
+
+2. **Point Selection (`pick`)**:
+   - **Binary Search**: Efficiently locates the rectangle for the random target.
+   - **Random Offset**: Generates a random offset to pick a point within the selected rectangle.
+
+---
+
+### **Usage Example**
+```java
+public static void main(String[] args) {
+    int[][] rects = {{1, 1, 3, 3}, {4, 4, 6, 6}};
+    Solution obj = new Solution(rects);
+
+    // Example: Picking random points
+    System.out.println(Arrays.toString(obj.pick())); // Random point
+    System.out.println(Arrays.toString(obj.pick())); // Random point
+}
+```
